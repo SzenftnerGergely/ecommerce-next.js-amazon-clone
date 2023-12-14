@@ -23,7 +23,7 @@ export default async function Home() {
           <div>
             <h1 className='text-5xl font-bold'>{products[0].name}</h1>
             <p className='py-6'>{products[0].description}</p>
-            <Link 
+            <Link
               href={"/products/" + products[0].id}
               className="btn btn-primary"
             >
@@ -31,8 +31,12 @@ export default async function Home() {
             </Link>
           </div>
         </div>
+      </div>
 
-        
+      <div className='my-4 grid grid-cols-1 md:grid-cols-2 xl:grid-col-3 gap-4'>
+        {products.slice(1).map(product => (
+          <ProductCard product={product} key={product.id} />
+        ))}
       </div>
     </div>
   )
