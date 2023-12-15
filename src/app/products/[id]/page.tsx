@@ -4,6 +4,8 @@ import { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import { cache } from "react"
+import AddToCartButton from "./AddToCartButton"
+import { BsCart2 } from "react-icons/bs"
 
 interface ProductPageProps {
     params: {
@@ -46,6 +48,7 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
                 <h1 className="text-5xl font-bold">{product.name}</h1>
                 <PriceTag price={product.price} className="mt-4" />
                 <p className="py-6">{product.description}</p>
+                <AddToCartButton productId={product.id} />
             </div>
         </div>
     )
