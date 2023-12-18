@@ -13,7 +13,7 @@ const UserMenuButton = ({ session }: UserMenuButtonProps) => {
     const user = session?.user
 
     return (
-        <div className="drowpdown dropdown-end">
+        <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
                 {user ?
                     <Image
@@ -21,7 +21,7 @@ const UserMenuButton = ({ session }: UserMenuButtonProps) => {
                         alt="profile picture"
                         width={40}
                         height={40}
-                        className="w-10 round-full"
+                        className="w-10 rounded-full"
                     />
                     : <svg
                         xmlns="http://www.w3.org/2000/svg"
