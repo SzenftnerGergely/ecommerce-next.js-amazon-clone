@@ -1,12 +1,12 @@
 import ProductCard from "@/components/ProductCard"
-import prisma from "@/lib/db/prisma"
+import { prisma } from "@/lib/db/prisma"
 import { Metadata } from "next"
 
 interface searchPageProps {
     searchParams: { query: string }
 }
 
-export function genrateMetadata({searchParams: {query}}: searchPageProps) : Metadata {
+export function genrateMetadata({ searchParams: { query } }: searchPageProps): Metadata {
     return {
         title: `Search: ${query} - Junkyard`
     }
@@ -16,14 +16,14 @@ const searchPage = async ({ searchParams: { query } }: searchPageProps) => {
     const products = await prisma.product.findMany({
         where: {
             OR: [
-                {name: {contains: query, mode: "insensitive"}},
-                {description: {contains: query, mode: "insensitive"}},
+                { name: { contains: query, mode: "insensitive" } },
+                { description: { contains: query, mode: "insensitive" } },
             ]
         },
-        orderBy: {id: "desc"}
+        orderBy: { id: "desc" }
     })
 
-    if(products.length === 0) {
+    if (products.length === 0) {
         return <div className="text-center">No Products found</div>
     }
 

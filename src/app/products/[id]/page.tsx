@@ -1,5 +1,5 @@
 import PriceTag from "@/components/PriceTag"
-import prisma from "@/lib/db/prisma"
+import { prisma } from "@/lib/db/prisma"
 import { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
@@ -14,9 +14,9 @@ interface ProductPageProps {
     }
 }
 
-const getProduct = cache(async (id:string) => {
-    const product = await prisma.product.findUnique({where: {id}})
-    if(!product) notFound()
+const getProduct = cache(async (id: string) => {
+    const product = await prisma.product.findUnique({ where: { id } })
+    if (!product) notFound()
     return product
 })
 
@@ -25,8 +25,8 @@ export async function generateMetadata({ params: { id } }: ProductPageProps): Pr
     return {
         title: product.name + " - Junkyard",
         description: product.description,
-        openGraph:{
-            images:[{url: product.imageUrl}]
+        openGraph: {
+            images: [{ url: product.imageUrl }]
         }
     }
 }
@@ -36,7 +36,7 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
 
     return (
         <div className="flex flex-col lg:flex-row gap-6 lg:item-center">
-            <Image 
+            <Image
                 src={product.imageUrl}
                 alt={product.name}
                 width={500}

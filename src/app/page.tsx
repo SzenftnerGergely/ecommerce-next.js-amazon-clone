@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import prisma from "@/lib/db/prisma"
+import { prisma } from "@/lib/db/prisma"
 import ProductCard from '@/components/ProductCard'
 import Link from 'next/link'
 import PaginationBar from '@/components/PaginationBar'
@@ -54,7 +54,7 @@ export default async function Home({ searchParams: { page = "1" } }: HomeProps) 
         </div>}
 
       <div className='my-4 grid grid-cols-1 md:grid-cols-2 xl:grid-col-3 gap-4'>
-        {(currentPage === 1 ? products.slice(1): products).map(product => (
+        {(currentPage === 1 ? products.slice(1) : products).map(product => (
           <ProductCard product={product} key={product.id} />
         ))}
       </div>
